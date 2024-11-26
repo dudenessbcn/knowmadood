@@ -2,10 +2,7 @@ package com.knowmad.mood.inditex.price.entity;
 
 import com.knowmad.mood.inditex.price.entity.converter.CurrencyConverter;
 import com.knowmad.mood.inditex.price.entity.enums.Currency;
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -19,23 +16,28 @@ import java.time.LocalDateTime;
 public class Price {
 
     @Id
-    @Column(name = "PRODUCT_ID")
-    private Long productId;
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "BRAND_ID")
     private Long brandId;
 
     @Column(name = "START_DATE")
-    private LocalDateTime startDate;
 
+    private LocalDateTime startDate;
     @Column(name = "END_DATE")
+
     private LocalDateTime endDate;
 
     @Column(name = "PRICE_LIST")
     private Long priceList;
 
+    @Column(name = "PRODUCT_ID")
+    private Long productId;
+
     @Column(name = "PRIORITY")
-    private Integer priority;
+    private Long priority;
 
     @Column(name = "PRICE")
     private BigDecimal price;
@@ -46,23 +48,8 @@ public class Price {
 
     private Price() {}
 
-    public Price(Long productId,
-                 Long brandId,
-                 LocalDateTime startDate,
-                 LocalDateTime endDate,
-                 Long priceList,
-                 Integer priority,
-                 BigDecimal price,
-                 Currency currency) {
-        this.productId = productId;
-        this.brandId = brandId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.priceList = priceList;
-        this.priority = priority;
-        this.price = price;
-        this.currency = currency;
-
+    public Long getId() {
+        return id;
     }
 
     public Long getProductId() {
@@ -85,7 +72,7 @@ public class Price {
         return priceList;
     }
 
-    public Integer getPriority() {
+    public Long getPriority() {
         return priority;
     }
 

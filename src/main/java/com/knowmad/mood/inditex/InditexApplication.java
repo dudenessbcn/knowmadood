@@ -1,4 +1,4 @@
-package com.knowmad.mood.inditex.boot;
+package com.knowmad.mood.inditex;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

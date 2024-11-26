@@ -1,3 +1,4 @@
+-- created just for testing, jpa will create table via entity ignoring this file
 create table if not exists PRICES (
     BRAND_ID bigint not null,
     START_DATE TIMESTAMP not null,
