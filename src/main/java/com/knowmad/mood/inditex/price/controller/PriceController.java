@@ -1,7 +1,6 @@
 package com.knowmad.mood.inditex.price.controller;
 
 import com.knowmad.mood.inditex.configuration.ApiURL;
-import com.knowmad.mood.inditex.price.dto.PriceFilter;
 import com.knowmad.mood.inditex.price.dto.PriceResponse;
 import com.knowmad.mood.inditex.price.service.PriceService;
 import jakarta.validation.constraints.NotNull;
@@ -25,17 +24,13 @@ public class PriceController {
     public PriceController(PriceService service) {
         this.service = service;
     }
+
     @GetMapping("/prices")
     public ResponseEntity<PriceResponse> getPrices(@RequestParam("date")
                                                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @NotNull LocalDateTime date,
                                                    @RequestParam @NotNull Long product,
                                                    @RequestParam @NotNull Long brand) {
         var response = service.getPrices(date, product, brand);
-        return new ResponseEntity<PriceResponse>(response, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
-//
-//    @GetMapping("/prices")
-//    public ResponseEntity<PriceResponse> getPrices() {
-//        return new ResponseEntity<PriceResponse>((PriceResponse) null, HttpStatus.ACCEPTED);
-//    }
 }

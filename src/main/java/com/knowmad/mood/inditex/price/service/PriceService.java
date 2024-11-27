@@ -1,7 +1,5 @@
 package com.knowmad.mood.inditex.price.service;
 
-import com.knowmad.mood.inditex.configuration.exception.PriceNotFoundException;
-import com.knowmad.mood.inditex.price.dto.PriceFilter;
 import com.knowmad.mood.inditex.price.dto.PriceResponse;
 
 import java.time.LocalDateTime;
@@ -11,5 +9,7 @@ import java.time.LocalDateTime;
  */
 public interface PriceService {
 
-    PriceResponse getPrices(LocalDateTime date, Long productId, Long brandId);
+    PriceResponse getPrices(LocalDateTime date,
+                            Long productId,
+                            Long brandId);
 }

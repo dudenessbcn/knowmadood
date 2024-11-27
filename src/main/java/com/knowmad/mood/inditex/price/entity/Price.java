@@ -24,10 +24,9 @@ public class Price {
     private Long brandId;
 
     @Column(name = "START_DATE")
-
     private LocalDateTime startDate;
-    @Column(name = "END_DATE")
 
+    @Column(name = "END_DATE")
     private LocalDateTime endDate;
 
     @Column(name = "PRICE_LIST")
@@ -47,6 +46,18 @@ public class Price {
     private Currency currency;
 
     private Price() {}
+
+    public Price(PriceBuilder builder) {
+        this.id = builder.id;
+        this.brandId = builder.brandId;
+        this.currency = builder.currency;
+        this.price = builder.price;
+        this.priceList = builder.priceList;
+        this.priority = builder.priority;
+        this.productId = builder.productId;
+        this.startDate = builder.startDate;
+        this.endDate = builder.endDate;
+    }
 
     public Long getId() {
         return id;

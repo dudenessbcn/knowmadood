@@ -4,6 +4,7 @@ import com.knowmad.mood.inditex.price.dto.PriceResponse;
 import com.knowmad.mood.inditex.price.mapper.PriceMapper;
 import com.knowmad.mood.inditex.price.repository.PriceRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 
@@ -28,14 +29,15 @@ public class PriceServiceImpl implements PriceService {
                                    Long product,
                                    Long brand) {
         var filter = mapper.toFilter(date, product, brand);
-//        var entity =
-//                priceRepository.findByProductIdAndBrandId(filter.getProductId(),
-//                        filter.getBrandId()).stream().findFirst();
+
         var entity =
                 priceRepository.findByStartDateBeforeAndEndDateAfterAndProductIdAndBrandIdOrderByPriorityDesc(filter.getApplicableDate(),
                         filter.getApplicableDate(),
                         filter.getProductId(),
-                        filter.getBrandId()).stream().findFirst();
-        return entity.map(mapper::toDTO).orElse(null);
+                        filter.getBrandId());
+        if (!CollectionUtils.isEmpty(entity)) {
+            return entity.stream().findFirst().map(mapper::toDTO).orElse(null);
+        }
+        return new PriceResponse();
     }
 }
